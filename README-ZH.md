@@ -1,14 +1,12 @@
 ﻿# AndroidAutoDispose
-Easy way to auto dispose rxjava2 with android lifecycle event
+一个随Android生命周期事件自动解绑Rxjava订阅的方便工具。
 
-**AndroidLifeCycle** is an android tool for auto dippose rxjava2 disposable when target android lifecycle event arrive. 
-
-Overview
+概述
 --------
-Work with [AndroidLifecycle][android-lifecycle] and [AutoDispose][autodispose], auto dispose with bound fragment, activity, context or view lifecycle event.
+应用了 [AndroidLifecycle][android-lifecycle] 和 [AutoDispose][autodispose], 随绑定的Fragment, Activity, Context 和View的生命周期事件来自动解绑Rxjava2订阅。
 
-### Example
-Bind myObservable with myFragment destroy event
+### 示例
+将 myObservable 的解绑和 myFragment 的 destroy 事件绑定
 ```
 myObservable
     .doStuff()
@@ -16,7 +14,7 @@ myObservable
     .subscribe(s -> ...);
 ```
 
-Bind mySingle with myView attached activity pause event
+将 mySingle 的解绑和 myView 所在的 Activity 的 pause 事件绑定
 ```
 mySingle
     .doStuff()
@@ -24,7 +22,7 @@ mySingle
     .subscribe(s -> ...);
 ```
 
-Bind myCompletable with myView attached fragment stop event
+将 myCompletable 的解绑和 myView 所绑定的 Fragment 的 stop 事件绑定
 ```
 AndroidLifeCycle.bindFragment(myView, myFragment);
 
@@ -34,9 +32,9 @@ myCompletable
     .subscribe(s -> ...);
 ```
 
-Support Rxjava2 Observable, Single, Completable, Maybe, Flowable
+支持 Rxjava2 Observable, Single, Completable, Maybe, Flowable
 
-Download
+下载
 --------
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.ykrank/androidautodispose.svg)](https://mvnrepository.com/artifact/com.github.ykrank/androidautodispose)
 
@@ -44,7 +42,7 @@ Download
 compile 'com.github.ykrank:androidautodispose:x.y.z'
 ```
 
-License
+版权许可
 -------
     Copyright (C) 2017 Yk Rank
 
