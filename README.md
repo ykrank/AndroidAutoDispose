@@ -1,4 +1,7 @@
 ﻿# AndroidAutoDispose
+
+[中文说明][chinese-readme]
+
 Easy way to auto dispose rxjava2 with android lifecycle event
 
 **AndroidLifeCycle** is an android tool for auto dippose rxjava2 disposable when target android lifecycle event arrive. 
@@ -62,3 +65,4 @@ License
 
 [android-lifecycle]: https://github.com/ykrank/AndroidLifeCycle
 [autodispose]: https://github.com/uber/AutoDispose
+[chinese-readme]: https://github.com/ykrank/AndroidAutoDispose/blob/master/README-ZH.md
