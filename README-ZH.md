@@ -5,6 +5,12 @@
 --------
 应用了 [AndroidLifecycle][android-lifecycle] 和 [AutoDispose][autodispose], 随绑定的Fragment, Activity, Context 和View的生命周期事件来自动解绑Rxjava2订阅。
 
+### 动机
+管理Rxjava和Android的生命周期并不是新鲜事，那么为什么要开发这个库呢？
+对于这个问题，详细情况可以看Uber 的[AutoDispose][autodispose] readme #Motivations.
+简单来说，你需要手动添加disposable，或者使用[RxLifecycle][RxLifecycle]。前者并不优雅。而为了正确的使用RxLifecycle，compose()必须离subscribe()调用越近越好，以将之前的操作流包装进来。同时，Single和Completable的解绑将一直引起CancellationException， 你必须总要记得处理这种异常。这些限制让使用它变得有一定风险（特别是在多人项目里面，和不同Rxjava基础的人一同使用时）。
+但在这个库中，你只能在订阅的最终阶段才可以监听事件，同时，你也能通过 AutoDisposePlugins.setOutsideLifecycleHandler添加全局的生命事件异常处理，避免了很多使用上的风险。
+
 ### 示例
 将 myObservable 的解绑和 myFragment 的 destroy 事件绑定
 ```

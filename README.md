@@ -10,7 +10,14 @@ Overview
 --------
 Work with [AndroidLifecycle][android-lifecycle] and [AutoDispose][autodispose], auto dispose with bound fragment, activity, context or view lifecycle event.
 
-### Example
+### Motivations
+Lifecycle management with RxJava and Android is nothing new, so why yet another tool?
+You can see this in uber [AutoDispose][autodispose] readme #Motivations.
+In short, you should add disposable manually, or use [RxLifecycle][RxLifecycle]. Previous not elegant. To use RxLifecycle correct, compose() needed to be as close to the subscribe() call as possible to properly wrap upstream. And Single or Completable dispose always throw CancellationException, you should always remember handle it. This limit make it was risky to use (particularly in a large team with varying levels of RxJava experience).
+But in this library, you can only listen event at flow last, you can also register global outsideLifecycleExcepitonHandler by AutoDisposePlugins.setOutsideLifecycleHandler, ignore lots of risk.
+
+
+### Usage
 Bind myObservable with myFragment destroy event
 ```
 myObservable
@@ -66,3 +73,4 @@ License
 [android-lifecycle]: https://github.com/ykrank/AndroidLifeCycle
 [autodispose]: https://github.com/uber/AutoDispose
 [chinese-readme]: https://github.com/ykrank/AndroidAutoDispose/blob/master/README-ZH.md
+[RxLifecycle]:https://github.com/trello/RxLifecycle/
