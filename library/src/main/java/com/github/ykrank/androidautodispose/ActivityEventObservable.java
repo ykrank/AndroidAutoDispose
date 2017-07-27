@@ -7,7 +7,6 @@ import com.github.ykrank.androidlifecycle.AndroidLifeCycle;
 import com.github.ykrank.androidlifecycle.event.ActivityEvent;
 import com.github.ykrank.androidlifecycle.lifecycle.LifeCycleListener;
 import com.github.ykrank.androidlifecycle.manager.ActivityLifeCycleManager;
-import com.github.ykrank.androidlifecycle.util.Util;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -17,19 +16,16 @@ import io.reactivex.android.MainThreadDisposable;
  * Provide activity lifecycle event
  */
 final class ActivityEventObservable extends Observable<AndroidRxEvent> {
-    private final Context context;
+    private final ActivityLifeCycleManager lifeCycleManager;
     private final ActivityEvent event;
 
     ActivityEventObservable(Context context, ActivityEvent event) {
-        this.context = context;
+        this.lifeCycleManager = AndroidLifeCycle.with(context);
         this.event = event;
     }
 
     @Override
     protected void subscribeActual(final Observer<? super AndroidRxEvent> observer) {
-        Util.assertMainThread();
-        ActivityLifeCycleManager lifeCycleManager = AndroidLifeCycle.with(context);
-
         LifeCycleListener listener = new LifeCycleListener() {
             @Override
             public void accept() {

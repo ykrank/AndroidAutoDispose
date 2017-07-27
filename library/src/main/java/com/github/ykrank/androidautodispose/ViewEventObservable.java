@@ -3,32 +3,29 @@ package com.github.ykrank.androidautodispose;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.MainThreadDisposable;
 import com.github.ykrank.androidlifecycle.AndroidLifeCycle;
 import com.github.ykrank.androidlifecycle.event.ViewEvent;
 import com.github.ykrank.androidlifecycle.lifecycle.LifeCycleListener;
 import com.github.ykrank.androidlifecycle.manager.ViewLifeCycleManager;
-import com.github.ykrank.androidlifecycle.util.Util;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.MainThreadDisposable;
 
 /**
  * Provide view lifecycle event
  */
 final class ViewEventObservable extends Observable<AndroidRxEvent> {
-    private final View view;
+    private final ViewLifeCycleManager lifeCycleManager;
     private final ViewEvent event;
 
     ViewEventObservable(View view, ViewEvent event) {
-        this.view = view;
+        this.lifeCycleManager = AndroidLifeCycle.with(view);
         this.event = event;
     }
 
     @Override
     protected void subscribeActual(final Observer<? super AndroidRxEvent> observer) {
-        Util.assertMainThread();
-        ViewLifeCycleManager lifeCycleManager = AndroidLifeCycle.with(view);
-
         LifeCycleListener listener = new LifeCycleListener() {
             @Override
             public void accept() {

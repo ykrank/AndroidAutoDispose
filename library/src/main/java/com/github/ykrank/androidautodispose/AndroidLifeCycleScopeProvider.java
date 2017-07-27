@@ -62,7 +62,7 @@ public class AndroidLifeCycleScopeProvider implements LifecycleScopeProvider<And
 
     @Override
     public Observable<AndroidRxEvent> lifecycle() {
-        return lifecycle.subscribeOn(AndroidSchedulers.mainThread());
+        return lifecycle;
     }
 
     @Override
